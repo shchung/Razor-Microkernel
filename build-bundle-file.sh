@@ -250,6 +250,10 @@ cp -p opt/gems/gem.list tmp-build-dir/tmp/gem-mirror/gems/gem.list
 mkdir -p tmp-build-dir/root
 cp rz_mk_gemrc.yaml tmp-build-dir/root/.gemrc
 
+# Copy openlldp facterplugin to tmp
+mkdir -p tmp-build-dir/tmp
+cp tmp/openlldp.rb tmp-build-dir/tmp/
+
 # create a copy of the local TCL Extension mirror that we will be running within
 # our Microkernel instances
 mkdir -p tmp-build-dir/tmp/tinycorelinux/4.x/x86/tcz
