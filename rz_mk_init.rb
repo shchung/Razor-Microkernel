@@ -40,6 +40,11 @@ gem_root = facter_root.split(File::SEPARATOR)[0...-2].join(File::SEPARATOR)
 # /usr/local/bin directory then we need construct a link to the executable in
 # the #{gem_root}/bin subdirectory...
 
+#facter's plugin directoy
+  facter_lib_dir = File.join(facter_lib, 'facter') 
+#add open lldp  plugin to facter 
+  %x[sudo cp /tmp/openlldp.rb #{facter_lib_dir}]
+
 if !File.exists?("/usr/local/bin/facter") then
   facter_exec = File.join(File.join(gem_root,"bin"),"facter")
   %x[sudo ln -s #{facter_exec} /usr/local/bin/facter]
