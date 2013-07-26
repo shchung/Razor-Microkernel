@@ -15,14 +15,9 @@ sudo ruby setup.rb
 cd $prev_wd
 sudo rm -rf /opt/tmp-install-rubygems
 
-sudo chmod 777 /tmp
 sudo mkdir -p /var/lib/lldpad
 sudo lldpad -d
-sudo lldptool set-lldp -i eth0 adminStatus=rx
-sudo lldptool set-lldp -i eth1 adminStatus=rx
-sudo lldptool set-lldp -i eth2 adminStatus=rx
-sudo lldptool set-lldp -i eth3 adminStatus=rx
-
+for i in `cat /proc/net/dev|cut -d : -f 1 |grep eth`; do sudo lldptool set-ssdp -i $i adminStatus=rx; done
 # then, initialize the Microkernel and start a few key services
 /usr/bin/sethostname box
 if [ -f /usr/local/etc/init.d/openssh ]
